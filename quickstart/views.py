@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from quickstart.serializers import *
-from .models import Candidate, Recruiter, Task, Grade
+from .models import Candidate, Recruiter, Task, Grade, AllAbout
 
 # API endpoint that allows groups to be viewed or edited.
 
@@ -23,4 +23,10 @@ class GradeViewSet(viewsets.ModelViewSet):
    
     queryset = Grade.objects.all()
     serializer_class = GradeSerializer
+
+class AllAboutViewSet(viewsets.ModelViewSet):
+   
+    queryset = AllAbout.objects.all()
+    serializer_class = AllAboutSerializer
+
     
