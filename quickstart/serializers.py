@@ -25,19 +25,5 @@ class GradeSerializer(serializers.ModelSerializer):
         model = Grade
         fields = ('value', 'task', 'candidate', 'recruiter', 'url')
 
-class AllAboutSerializer(serializers.ModelSerializer):
-    #author = CandidateSerializer(read_only=True)
-
-    class Meta:
-        model = AllAbout
-        fields = ('candidate', 'url', 'grades')
-        #read_only = ('grades', 'task')
-
-#serializer = GradeSerializer(comment)
-#serializer.data
-
-    def create(self, validated_data):
-        return AllAbout.objects.create(**validated_data)
-
 
     

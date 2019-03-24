@@ -7,7 +7,7 @@ router.register(r'add-candidates', views.CandidateViewSet)
 router.register(r'add-recruiters', views.RecruiterViewSet)
 router.register(r'add-tasks', views.TaskViewSet)
 router.register(r'add-grades', views.GradeViewSet)
-router.register(r'all-about', views.AllAboutViewSet)
+# router.register(r'all-about', views.AllAboutViewSet)
 
 
 # Wire up API using automatic URL routing.

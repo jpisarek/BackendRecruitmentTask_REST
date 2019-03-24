@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from quickstart.serializers import *
-from .models import Candidate, Recruiter, Task, Grade, AllAbout
+from .models import Candidate, Recruiter, Task, Grade
 
 # API endpoint that allows groups to be viewed or edited.
 
@@ -25,8 +25,20 @@ class GradeViewSet(viewsets.ModelViewSet):
     serializer_class = GradeSerializer
 
 class AllAboutViewSet(viewsets.ModelViewSet):
-   
-    queryset = AllAbout.objects.all()
-    serializer_class = AllAboutSerializer
 
-    
+    candidates = Candidate.objects.all()
+    grades = Grade.objects.all()
+
+    for candidate in candidates:
+        candidate.grades = Grade.objects.filter(candidate_id = candidate.id).values_list('value', flat=True)
+        print(str(len(candidate.grades)))
+        print(str(candidate.grades))
+
+        if len(candidate.grades) != 0:
+            gradeSum = sum(candidate.grades)
+            gradeLength = len(candidate.grades)
+            candidate.avg = round(gradeSum/gradeLength, 2)
+        else:    
+            candidate.avg = 0
+        print(str(candidate.avg))
+        print("oceny " + candidate.last_name + " " + str(candidate.grades))

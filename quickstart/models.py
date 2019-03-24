@@ -34,15 +34,4 @@ class Grade(models.Model):
         return self.value()
 
 
-class AllAbout(models.Model):
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
-    #task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    grades = models.ManyToManyField(Grade)
-
-
-    def __str__(self):
-        return self.candidate()
-        return self.grades()
-
-
    
