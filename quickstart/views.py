@@ -41,4 +41,4 @@ class AllAboutViewSet(viewsets.ModelViewSet):
         else:    
             candidate.avg = 0
         print(str(candidate.avg))
-        print("oceny " + candidate.last_name + " " + str(candidate.grades))
+        print("oceny " + candidate.first_name + " " + candidate.last_name + " " + str(candidate.grades))
