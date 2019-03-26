@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from quickstart.serializers import *
 from .models import Candidate, Recruiter, Task, Grade
+from rest_framework.response import Response
+import django
 
 # API endpoint that allows groups to be viewed or edited.
 
@@ -29,16 +31,15 @@ class AllAboutViewSet(viewsets.ModelViewSet):
     candidates = Candidate.objects.all()
     grades = Grade.objects.all()
 
-    for candidate in candidates:
-        candidate.grades = Grade.objects.filter(candidate_id = candidate.id).values_list('value', flat=True)
-        print(str(len(candidate.grades)))
-        print(str(candidate.grades))
+    '''Poniższy fragment należy odkomentować po wykonaniu komendy: "python manage.py migrate" '''
 
-        if len(candidate.grades) != 0:
-            gradeSum = sum(candidate.grades)
-            gradeLength = len(candidate.grades)
-            candidate.avg = round(gradeSum/gradeLength, 2)
-        else:    
-            candidate.avg = 0
-        print(str(candidate.avg))
-        print("oceny " + candidate.first_name + " " + candidate.last_name + " " + str(candidate.grades))
+    # for candidate in candidates:
+    #     candidate.grades = Grade.objects.filter(candidate_id = candidate.id).values_list('value', flat=True)
+    #     if len(candidate.grades) != 0:
+    #         gradeSum = sum(candidate.grades)
+    #         gradeLength = len(candidate.grades)
+    #         candidate.avg = round(gradeSum/gradeLength, 2)
+    #     else:    
+    #         candidate.avg = 0
+    #     print("Średnia ocen kandydata " + candidate.first_name + " " + candidate.last_name + ": " + str(candidate.avg))
+    #     print("Oceny kandydata " + candidate.first_name + " " + candidate.last_name + ": " + str(candidate.grades))
